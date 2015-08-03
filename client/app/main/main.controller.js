@@ -1,27 +1,18 @@
 'use strict';
 
-angular.module('chatExpressApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
-    $scope.awesomeThings = [];
+angular
+  .module('chatExpressApp')
+  .controller('MainCtrl', MainCtrl);
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-      socket.syncUpdates('thing', $scope.awesomeThings);
-    });
+  MainCtrl.$inject = ['$scope', '$http', 'UserInfo'];
 
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
-    };
+  function MainCtrl($scope, $http, UserInfo) {
 
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
-    };
+    var vm = this;
 
-    $scope.$on('$destroy', function () {
-      socket.unsyncUpdates('thing');
-    });
-  });
+    activate();
+
+    function activate() {
+      vm.user = UserInfo.getDataUser();
+    }
+  };

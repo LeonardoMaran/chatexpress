@@ -29,7 +29,8 @@ var all = {
 
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
-    session: 'chat-express-secret'
+    session: 'chat-express-secret',
+    supersecret: 'cookies'
   },
 
   // List of user roles

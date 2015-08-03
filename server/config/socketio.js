@@ -14,11 +14,11 @@ function onDisconnect(socket) {
 function onConnect(socket) {
   // When the client emits 'info', this listens and executes
   socket.on('info', function (data) {
-    console.info('[%s] %s', socket.address, JSON.stringify(data, null, 2));
+    console.info('info inside of onConnect', JSON.stringify(data, null, 2));
   });
 
   // Insert sockets below
-  require('../api/thing/thing.socket').register(socket);
+  // require('../api/thing/thing.socket').register(socket);
 }
 
 module.exports = function (socketio) {
@@ -37,21 +37,27 @@ module.exports = function (socketio) {
   //   handshake: true
   // }));
 
+
+  //TODO research on securing sockets with tokens
   socketio.on('connection', function (socket) {
-    socket.address = socket.handshake.address !== null ?
-            socket.handshake.address.address + ':' + socket.handshake.address.port :
-            process.env.DOMAIN;
+    // socket.address = socket.handshake.address !== null ?
+    //         socket.handshake.address.address + ':' + socket.handshake.address.port :
+    //         process.env.DOMAIN;
 
     socket.connectedAt = new Date();
 
+    socket.on('chat message', function(msg){
+      socket.emit('chat message', msg);
+    });
+
     // Call onDisconnect.
     socket.on('disconnect', function () {
-      onDisconnect(socket);
-      console.info('[%s] DISCONNECTED', socket.address);
+      // onDisconnect(socket);
+      console.info('DISCONNECTED');
     });
 
     // Call onConnect.
-    onConnect(socket);
-    console.info('[%s] CONNECTED', socket.address);
+    // onConnect(socket);
+    console.info('CONNECTED ONTO SOCKETS');
   });
 };

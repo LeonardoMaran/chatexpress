@@ -33,6 +33,7 @@ var all = {
     supersecret: 'cookies'
   },
 
+
   // List of user roles
   userRoles: ['guest', 'user', 'admin'],
 

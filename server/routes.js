@@ -14,7 +14,7 @@ module.exports = function(app) {
 
   app.post('/signup', function(req, res, next) {
 
-    if (req.body.password == '' || req.body.password == null || req.body.username == '' || req.body.username == null ) {
+    if (req.body.password === '' || req.body.password === null || req.body.username === '' || req.body.username === null ) {
       res.json({
         success: false,
         message: 'No password provided!'

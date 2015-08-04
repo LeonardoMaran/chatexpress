@@ -39,6 +39,9 @@ var all = {
 
   // MongoDB connection options
   mongo: {
+    uri: {
+      uri: process.env.MONGOLAB_URI || 'mongodb://localhost/chatexpress'
+    },
     options: {
       db: {
         safe: true

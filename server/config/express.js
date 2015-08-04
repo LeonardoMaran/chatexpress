@@ -32,6 +32,7 @@ module.exports = function(app) {
     app.use(express.static(path.join(config.root, 'public')));
     app.set('appPath', path.join(config.root, 'public'));
     app.use(express.static(path.join(config.root, 'client')));
+    app.use('/bower_components', express.static(__dirname + '/bower_components'));
     app.use(morgan('dev'));
   }
 

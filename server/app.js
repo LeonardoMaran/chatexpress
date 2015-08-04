@@ -64,8 +64,8 @@ socketio.on('connection', function(socket) {
 });
 
 // Start server
-server.listen(process.env.PORT, config.ip, function () {
-  console.log('Express server listening on %d, in %s mode', process.env.PORT, app.get('env'));
+server.listen(process.env.PORT, function () {
+  console.log('Express server listening TESTESTEST BEING FIRED on %d, in %s mode', process.env.PORT, app.get('env'));
 });
 
 // Expose app

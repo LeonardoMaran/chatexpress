@@ -54,7 +54,7 @@ socketio.on('connection', function(socket) {
       if(err) { console.log(err); }
       console.log('Success in saving the message to mongo db!');
     });
-		socket.broadcast.emit('chat message', msg);
+		socketio.emit('chat message', msg);
 	});
 
 	socket.on('disconnect', function() {
